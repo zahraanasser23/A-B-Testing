@@ -1,4 +1,8 @@
 
+#control_data = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/control_group.csv')
+#test_data = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/test_group.csv')
+
+
 
 import streamlit as st
 import pandas as pd
@@ -65,4 +69,4 @@ else:
     # Add the code for Spend Comparison visualization here (from the previous response)
 
 # Streamlit app footer (optional)
-    st.sidebar.text("Powered by Streamlit and Plotly")
+st.sidebar.text("Powered by Streamlit and Plotly")
