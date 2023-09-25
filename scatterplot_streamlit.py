@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-pip install streamlit plotly
+
 
 
 import streamlit as st
