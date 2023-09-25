@@ -61,7 +61,7 @@ animation_parameter = st.selectbox('Select Animation Parameter', ['# of Website 
 # Create scatter plot for Control Group
 fig_control = px.scatter(control_group, x=animation_parameter, y='# of Purchase', color='Campaign Name',
                          size_max=20, title='Clicks vs. Purchase Correlation - Control Campaign',
-                         labels={animation_parameter: 'Parameter', '# of Purchase': 'Purchase'},
+                         labels={animation_parameter: 'Clicks', '# of Purchase': 'Purchase'},
                          animation_frame='Campaign Name')
 
 # Set color scale for the Control Group
@@ -70,7 +70,7 @@ fig_control.update_traces(marker=dict(size=12, opacity=0.7), selector=dict(mode=
 # Create scatter plot for Test Group
 fig_test = px.scatter(test_group, x=animation_parameter, y='# of Purchase', color='Campaign Name',
                       size_max=20, title='Clicks vs. Purchase Correlation - Test Campaign',
-                      labels={animation_parameter: 'Parameter', '# of Purchase': 'Purchase'},
+                      labels={animation_parameter: 'Clicks', '# of Purchase': 'Purchase'},
                       animation_frame='Campaign Name')
 
 # Set color scale for the Test Group
