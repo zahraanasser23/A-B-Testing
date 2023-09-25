@@ -5,10 +5,10 @@ import pandas as pd
 st.title('Marketing Campaigns A/B Testing')
 
 # Load the control campaign dataset with a semicolon (;) delimiter
-control_group = pd.read_csv('/Users/user/Desktop/Python_Plotly_Activity_ZahraaNasser/control_group.csv', delimiter=';')
+control_group = pd.read_csv('control_group.csv', delimiter=';')
 
 # Load the test campaign dataset with a semicolon (;) delimiter
-test_group = pd.read_csv('/Users/user/Desktop/Python_Plotly_Activity_ZahraaNasser/test_group.csv', delimiter=';')
+test_group = pd.read_csv('test_group.csv', delimiter=';')
 
 # Display the column names of the control and test data frames
 st.subheader('Column Names:')
