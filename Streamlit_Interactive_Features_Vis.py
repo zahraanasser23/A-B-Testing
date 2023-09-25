@@ -67,7 +67,7 @@ fig = px.scatter(combined_data, x='# of Website Clicks', y='# of Purchase', colo
                  labels={'# of Website Clicks': 'Clicks', '# of Purchase': 'Purchase'})
 
 # Set color scale for Control (blue) and Test (red)
-fig.update_traces(marker=dict(size=12, opacity=0.7),
+fig.update_traces(marker=dict(size=16, opacity=0.7),
                   selector=dict(mode='markers+text'))
 
 # Use st.plotly_chart to display the Plotly figure in Streamlit
