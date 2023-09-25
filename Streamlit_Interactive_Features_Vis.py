@@ -8,8 +8,11 @@ import plotly.graph_objs as go
 import pandas as pd
 
 # Load your data for the control and test sets
-control_group = pd.read_csv('/kaggle/input/ab-testing-dataset/control_group.csv', delimiter=';')
-test_group = pd.read_csv('/kaggle/input/ab-testing-dataset/test_group.csv', delimiter=';')
+#control_group = pd.read_csv('/kaggle/input/ab-testing-dataset/control_group.csv', delimiter=';')
+#test_group = pd.read_csv('/kaggle/input/ab-testing-dataset/test_group.csv', delimiter=';')
+
+#control_group = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/control_group.csv')
+#test_group = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/test_group.csv')
 
 
 # Create Streamlit app
