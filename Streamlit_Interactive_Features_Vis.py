@@ -65,4 +65,4 @@ else:
     # Add the code for Spend Comparison visualization here (from the previous response)
 
 # Streamlit app footer (optional)
-st.sidebar.text("Powered by Streamlit and Plotly")
+    st.sidebar.text("Powered by Streamlit and Plotly")
