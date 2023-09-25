@@ -2,6 +2,8 @@ import streamlit as st
 import plotly.graph_objs as go
 import pandas as pd
 
+campaign_name_filter = st.selectbox('Select Campaign Name', options=['All'] + control_group['Campaign'].unique().tolist())
+
 try:
     control_group = pd.read_csv('control_group.csv')
     test_group = pd.read_csv('test_group.csv')
