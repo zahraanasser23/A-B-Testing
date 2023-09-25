@@ -15,8 +15,8 @@ import plotly.express as px
 
 # Load your data for the control and test sets
 # Load your data for the control and test sets from raw GitHub URLs
-control_data_url = 'https://raw.githubusercontent.com/zahraanasser23/A-B-Testing/main/control_group.csv'
-test_data_url = 'https://raw.githubusercontent.com/zahraanasser23/A-B-Testing/main/test_group.csv'
+control_data_url = "https://raw.githubusercontent.com/zahraanasser23/A-B-Testing/main/control_group.csv"
+test_data_url = "https://raw.githubusercontent.com/zahraanasser23/A-B-Testing/main/test_group.csv"
 
 control_data = pd.read_csv(control_data_url)
 test_data = pd.read_csv(test_data_url)
@@ -60,8 +60,4 @@ st.plotly_chart(fig, use_container_width=True)
 # Streamlit app footer (optional)
 st.sidebar.text("Powered by Streamlit and Plotly")
 
-try:
-    control_data = pd.read_csv(control_data_url)
-    # Rest of your code
-except Exception as e:
-    print("An error occurred:", e)
+
