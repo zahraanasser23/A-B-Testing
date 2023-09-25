@@ -2,8 +2,11 @@ import streamlit as st
 import plotly.graph_objs as go
 import pandas as pd
 
-control_group = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/control_group.csv')
-test_group = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/test_group.csv')
+try:
+    control_group = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/control_group.csv')
+    test_group = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/test_group.csv')
+except Exception as e:
+    st.error(f"Error loading data: {str(e)}")
 
 # Create Streamlit app
 st.title('Marketing Campaigns A/B Testing')
@@ -37,3 +40,4 @@ st.plotly_chart(box_plot_spend)
 
 # Streamlit app footer (optional)
 st.sidebar.text("Powered by Streamlit and Plotly")
+
