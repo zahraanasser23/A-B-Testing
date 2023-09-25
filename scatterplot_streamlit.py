@@ -32,14 +32,6 @@ st.sidebar.header('Filter Data')
 campaign_selection = st.sidebar.radio('Select Campaign', ('Control', 'Test'))
 
 import pandas as pd
-
-try:
-    control_data = pd.read_csv(control_data_url)
-    # Rest of your code
-except Exception as e:
-    print("An error occurred:", e)
-
-
 if campaign_selection == 'Control':
     data = control_data
     title = 'Control Campaign'
@@ -67,3 +59,9 @@ st.plotly_chart(fig, use_container_width=True)
 
 # Streamlit app footer (optional)
 st.sidebar.text("Powered by Streamlit and Plotly")
+
+try:
+    control_data = pd.read_csv(control_data_url)
+    # Rest of your code
+except Exception as e:
+    print("An error occurred:", e)
