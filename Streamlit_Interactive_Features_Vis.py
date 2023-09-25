@@ -19,23 +19,34 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objs as go
 
-# Streamlit app title
-st.title('Spend Comparison - Control vs. Test Campaigns')
+# Assuming you have control_group and test_group DataFrames defined
 
-# Create two separate box plots for Control and Test Campaigns
-fig = go.Figure()
+# Create Streamlit app
+st.title('Interactive Box Plot - Campaign Spend Comparison')
 
-# Box Plot for Control Campaign
-fig.add_trace(go.Box(x=control_data['Campaign Name'], y=control_data['Spend [USD]'], name='Control Campaign', boxpoints='all'))
+# Sidebar widgets for user interaction
+campaign_name_filter = st.selectbox('Select Campaign Name', options=['All'] + control_group['Campaign Name'].unique().tolist())
+spend_min = st.slider('Minimum Spend [USD]', min_value=0, max_value=int(control_group['Spend [USD]'].max()), value=0)
+spend_max = st.slider('Maximum Spend [USD]', min_value=0, max_value=int(control_group['Spend [USD]'].max()), value=int(control_group['Spend [USD]'].max()))
 
-# Box Plot for Test Campaign
-fig.add_trace(go.Box(x=test_data['Campaign Name'], y=test_data['Spend [USD]'], name='Test Campaign', boxpoints='all'))
+# Filter the data based on user selections
+filtered_control_group = control_group.copy()
+filtered_test_group = test_group.copy()
 
-# Update layout
-fig.update_layout(title='Spend Comparison - Control vs. Test Campaigns', xaxis_title='Campaign Name', yaxis_title='Spend [USD]')
+if campaign_name_filter != 'All':
+    filtered_control_group = filtered_control_group[filtered_control_group['Campaign Name'] == campaign_name_filter]
+    filtered_test_group = filtered_test_group[filtered_test_group['Campaign Name'] == campaign_name_filter]
+
+filtered_control_group = filtered_control_group[(filtered_control_group['Spend [USD]'] >= spend_min) & (filtered_control_group['Spend [USD]'] <= spend_max)]
+filtered_test_group = filtered_test_group[(filtered_test_group['Spend [USD]'] >= spend_min) & (filtered_test_group['Spend [USD]'] <= spend_max)]
+
+# Create the box plot based on the filtered data
+box_plot_spend = go.Figure()
+
+box_plot_spend.add_trace(go.Box(x=filtered_control_group['Campaign Name'], y=filtered_control_group['Spend [USD]'], name='Control Campaign', boxpoints='all'))
+box_plot_spend.add_trace(go.Box(x=filtered_test_group['Campaign Name'], y=filtered_test_group['Spend [USD]'], name='Test Campaign', boxpoints='all'))
+
+box_plot_spend.update_layout(title='Spend Comparison - Control vs. Test Campaign', xaxis_title='Campaign Name', yaxis_title='Spend [USD]')
 
 # Use st.plotly_chart to display the Plotly figure in Streamlit
-st.plotly_chart(fig)
-
-
-
+st.plotly_chart(box_plot_spend)
