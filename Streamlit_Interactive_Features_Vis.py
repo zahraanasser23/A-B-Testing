@@ -66,7 +66,7 @@ visualization_selection = st.sidebar.radio('Select Visualization', ['Clicks vs. 
 
 if visualization_selection == 'Clicks vs. Purchase Correlation':
     st.plotly_chart(fig, use_container_width=True)
-else:
+#else:
     # Add the code for Spend Comparison visualization here
 
 # Streamlit app footer (optional)
