@@ -1,41 +1,19 @@
 import streamlit as st
-import plotly.graph_objs as go
 import pandas as pd
 
-control_group = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/control_group.csv')
-test_group = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/test_group.csv')
-st.write("Column Names:", control_group.columns)
-# Create Streamlit app
+# Set the Streamlit app title
 st.title('Marketing Campaigns A/B Testing')
-st.write("Column Names:", control_group.columns)
-# Sidebar widgets for user interaction
-campaign_name_filter = st.selectbox('Select Campaign Name', options=['All'] + control_group['Campaign Name'].unique().tolist())
-spend_min = st.slider('Minimum Spend [USD]', min_value=0, max_value=int(control_group['Spend [USD]'].max()), value=0)
-spend_max = st.slider('Maximum Spend [USD]', min_value=0, max_value=int(control_group['Spend [USD]'].max()), value=int(control_group['Spend [USD]'].max()))
 
-# Filter the data based on user selections
-filtered_control_group = control_group.copy()
-filtered_test_group = test_group.copy()
+# Load the control campaign dataset with a semicolon (;) delimiter
+control_group = pd.read_csv('/Users/user/Desktop/Python_Plotly_Activity_ZahraaNasser/control_group.csv', delimiter=';')
 
-if campaign_name_filter != 'All':
-    filtered_control_group = filtered_control_group[filtered_control_group['Campaign Name'] == campaign_name_filter]
-    filtered_test_group = filtered_test_group[filtered_test_group['Campaign Name'] == campaign_name_filter]
+# Load the test campaign dataset with a semicolon (;) delimiter
+test_group = pd.read_csv('/Users/user/Desktop/Python_Plotly_Activity_ZahraaNasser/test_group.csv', delimiter=';')
 
-filtered_control_group = filtered_control_group[(filtered_control_group['Spend [USD]'] >= spend_min) & (filtered_control_group['Spend [USD]'] <= spend_max)]
-filtered_test_group = filtered_test_group[(filtered_test_group['Spend [USD]'] >= spend_min) & (filtered_test_group['Spend [USD]'] <= spend_max)]
+# Display the column names of the control and test data frames
+st.subheader('Column Names:')
+st.write("Control Campaign Column Names:", control_group.columns.tolist())
+st.write("Test Campaign Column Names:", test_group.columns.tolist())
 
-# Create the box plot based on the filtered data
-box_plot_spend = go.Figure()
-
-box_plot_spend.add_trace(go.Box(x=filtered_control_group['Campaign Name'], y=filtered_control_group['Spend [USD]'], name='Control Campaign', boxpoints='all'))
-box_plot_spend.add_trace(go.Box(x=filtered_test_group['Campaign Name'], y=filtered_test_group['Spend [USD]'], name='Test Campaign', boxpoints='all'))
-
-box_plot_spend.update_layout(title='Spend Comparison - Control vs. Test Campaign', xaxis_title='Campaign Name', yaxis_title='Spend [USD]')
-
-# Use st.plotly_chart to display the Plotly figure in Streamlit
-st.plotly_chart(box_plot_spend)
-
-# Streamlit app footer (optional)
-st.sidebar.text("Powered by Streamlit and Plotly")
 
 
