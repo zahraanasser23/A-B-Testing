@@ -4,6 +4,10 @@ import pandas as pd
 # Set the Streamlit app title
 st.title('Marketing Campaigns A/B Testing')
 
+# Display a cover photo or banner image
+cover_image_url = 'https://rocketium.com/academy/wp-content/uploads/2018/02/ab-testing.png'  
+st.image(cover_image_url, use_column_width=True, caption='Testing Marketing Campaigns')
+
 # Load the control campaign dataset with a semicolon (;) delimiter
 control_group = pd.read_csv('control_group.csv', delimiter=';')
 
