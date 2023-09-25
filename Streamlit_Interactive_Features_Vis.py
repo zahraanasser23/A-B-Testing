@@ -7,7 +7,7 @@ test_group = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main
 
 # Create Streamlit app
 st.title('Marketing Campaigns A/B Testing')
-
+st.write("Column Names:", control_group.columns)
 # Sidebar widgets for user interaction
 campaign_name_filter = st.selectbox('Select Campaign Name', options=['All'] + control_group['Campaign Name'].unique().tolist())
 spend_min = st.slider('Minimum Spend [USD]', min_value=0, max_value=int(control_group['Spend [USD]'].max()), value=0)
