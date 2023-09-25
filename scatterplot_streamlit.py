@@ -31,6 +31,15 @@ st.title('Clicks vs. Purchase Correlation')
 st.sidebar.header('Filter Data')
 campaign_selection = st.sidebar.radio('Select Campaign', ('Control', 'Test'))
 
+import pandas as pd
+
+try:
+    control_data = pd.read_csv(control_data_url)
+    # Rest of your code
+except Exception as e:
+    print("An error occurred:", e)
+
+
 if campaign_selection == 'Control':
     data = control_data
     title = 'Control Campaign'
