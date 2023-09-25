@@ -9,8 +9,8 @@ import pandas as pd
 import plotly.graph_objs as go
 
 # Load your data for the control and test sets
-control_data = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/control_group.csv')
-test_data = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/test_group.csv')
+control_data = pd.read_csv("https://github.com/zahraanasser23/A-B-Testing/raw/main/control_group.csv")
+test_data = pd.read_csv("https://github.com/zahraanasser23/A-B-Testing/raw/main/test_group.csv")
 
 # Streamlit app title
 st.title('Clicks vs. Purchase Correlation')
