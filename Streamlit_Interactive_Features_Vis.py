@@ -4,7 +4,7 @@ import pandas as pd
 
 control_group = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/control_group.csv')
 test_group = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/test_group.csv')
-
+st.write("Column Names:", control_group.columns)
 # Create Streamlit app
 st.title('Marketing Campaigns A/B Testing')
 st.write("Column Names:", control_group.columns)
