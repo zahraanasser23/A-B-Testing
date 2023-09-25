@@ -51,31 +51,26 @@ box_plot_spend.update_layout(title='Spend Comparison - Control vs. Test Campaign
 st.plotly_chart(box_plot_spend)
 
 import streamlit as st
-import plotly.express as px
 import pandas as pd
+import plotly.express as px
 
 
-# Sidebar filters for user interaction
-st.sidebar.header('Clicks vs. Purchase Correlation')
+# Combine control and test data into a single DataFrame with a label column
+control_group['Campaign Type'] = 'Control'
+test_group['Campaign Type'] = 'Test'
+combined_data = pd.concat([control_group, test_group])
 
-# Filter out rows with missing or invalid data in control campaign
-control_group_cleaned = control_group.dropna(subset=['# of Website Clicks', '# of Purchase'])
+# Create scatter plot
+fig = px.scatter(combined_data, x='# of Website Clicks', y='# of Purchase', color='Campaign Type',
+                 animation_frame='Campaign Name', size_max=20,
+                 title='Clicks vs. Purchase Correlation - Control vs. Test Campaign',
+                 labels={'# of Website Clicks': 'Clicks', '# of Purchase': 'Purchase'})
 
-# Filter out rows with missing or invalid data in test campaign
-test_group_cleaned = test_group.dropna(subset=['# of Website Clicks', '# of Purchase'])
+# Set color scale for Control (blue) and Test (red)
+fig.update_traces(marker=dict(size=12, opacity=0.7),
+                  selector=dict(mode='markers+text'))
 
-# Create scatter plots for Clicks vs. Purchase correlation for both campaigns
-campaigns = st.sidebar.multiselect('Select Campaigns', control_group_cleaned['Campaign Name'].unique().tolist() + test_group_cleaned['Campaign Name'].unique().tolist())
+# Use st.plotly_chart to display the Plotly figure in Streamlit
+st.plotly_chart(fig)
 
-scatter_control = px.scatter(control_group_cleaned[control_group_cleaned['Campaign Name'].isin(campaigns)], x='# of Website Clicks', y='# of Purchase',
-                             color='Campaign Name', size='# of Website Clicks', size_max=20,
-                             title='Clicks vs. Purchase Correlation - Control Campaign')
-
-scatter_test = px.scatter(test_group_cleaned[test_group_cleaned['Campaign Name'].isin(campaigns)], x='# of Website Clicks', y='# of Purchase',
-                          color='Campaign Name', size='# of Website Clicks', size_max=20,
-                          title='Clicks vs. Purchase Correlation - Test Campaign')
-
-# Display the scatter plots
-st.plotly_chart(scatter_control)
-st.plotly_chart(scatter_test)
 
