@@ -69,7 +69,7 @@ fig_control = px.scatter(control_group, x=animation_parameter, y='# of Purchase'
                          animation_frame='Campaign Name')
 
 # Set color scale for the Control Group
-fig_control.update_traces(marker=dict(size=12, opacity=0.7), selector=dict(mode='markers+text'))
+fig_control.update_traces(marker=dict(size=16, opacity=0.7), selector=dict(mode='markers+text'))
 
 # Create scatter plot for Test Group
 fig_test = px.scatter(test_group, x=animation_parameter, y='# of Purchase', color='Campaign Name',
@@ -78,7 +78,7 @@ fig_test = px.scatter(test_group, x=animation_parameter, y='# of Purchase', colo
                       animation_frame='Campaign Name')
 
 # Set color scale for the Test Group
-fig_test.update_traces(marker=dict(size=12, opacity=0.7), selector=dict(mode='markers+text'))
+fig_test.update_traces(marker=dict(size=16, opacity=0.7), selector=dict(mode='markers+text'))
 
 # Display the Control and Test plots side by side
 st.plotly_chart(fig_control, use_container_width=True)
