@@ -55,22 +55,30 @@ import pandas as pd
 import plotly.express as px
 
 
-# Combine control and test data into a single DataFrame with a label column
-control_group['Campaign Type'] = 'Control'
-test_group['Campaign Type'] = 'Test'
-combined_data = pd.concat([control_group, test_group])
+# Interactive feature: Select parameter for animation
+animation_parameter = st.selectbox('Select Animation Parameter', ['# of Website Clicks', '# of Purchase'])
 
-# Create scatter plot
-fig = px.scatter(combined_data, x='# of Website Clicks', y='# of Purchase', color='Campaign Type',
-                 animation_frame='Campaign Name', size_max=20,
-                 title='Clicks vs. Purchase Correlation - Control vs. Test Campaign',
-                 labels={'# of Website Clicks': 'Clicks', '# of Purchase': 'Purchase'})
+# Create scatter plot for Control Group
+fig_control = px.scatter(control_group, x=animation_parameter, y='# of Purchase', color='Campaign Name',
+                         size_max=20, title='Clicks vs. Purchase Correlation - Control Campaign',
+                         labels={animation_parameter: 'Parameter', '# of Purchase': 'Purchase'},
+                         animation_frame='Campaign Name')
 
-# Set color scale for Control (blue) and Test (red)
-fig.update_traces(marker=dict(size=16, opacity=0.7),
-                  selector=dict(mode='markers+text'))
+# Set color scale for the Control Group
+fig_control.update_traces(marker=dict(size=12, opacity=0.7), selector=dict(mode='markers+text'))
 
-# Use st.plotly_chart to display the Plotly figure in Streamlit
-st.plotly_chart(fig)
+# Create scatter plot for Test Group
+fig_test = px.scatter(test_group, x=animation_parameter, y='# of Purchase', color='Campaign Name',
+                      size_max=20, title='Clicks vs. Purchase Correlation - Test Campaign',
+                      labels={animation_parameter: 'Parameter', '# of Purchase': 'Purchase'},
+                      animation_frame='Campaign Name')
+
+# Set color scale for the Test Group
+fig_test.update_traces(marker=dict(size=12, opacity=0.7), selector=dict(mode='markers+text'))
+
+# Display the Control and Test plots side by side
+st.plotly_chart(fig_control, use_container_width=True)
+st.plotly_chart(fig_test, use_container_width=True)
+
 
 
