@@ -19,7 +19,6 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objs as go
 
-# Assuming you have control_group and test_group DataFrames defined
 
 # Create Streamlit app
 st.title('Interactive Box Plot - Campaign Spend Comparison')
@@ -50,3 +49,33 @@ box_plot_spend.update_layout(title='Spend Comparison - Control vs. Test Campaign
 
 # Use st.plotly_chart to display the Plotly figure in Streamlit
 st.plotly_chart(box_plot_spend)
+
+import streamlit as st
+import plotly.express as px
+import pandas as pd
+
+
+# Sidebar filters for user interaction
+st.sidebar.header('Clicks vs. Purchase Correlation')
+
+# Filter out rows with missing or invalid data in control campaign
+control_group_cleaned = control_data.dropna(subset=['# of Website Clicks', '# of Purchase'])
+
+# Filter out rows with missing or invalid data in test campaign
+test_group_cleaned = test_data.dropna(subset=['# of Website Clicks', '# of Purchase'])
+
+# Create scatter plots for Clicks vs. Purchase correlation for both campaigns
+campaigns = st.sidebar.multiselect('Select Campaigns', control_group_cleaned['Campaign Name'].unique().tolist() + test_group_cleaned['Campaign Name'].unique().tolist())
+
+scatter_control = px.scatter(control_group_cleaned[control_group_cleaned['Campaign Name'].isin(campaigns)], x='# of Website Clicks', y='# of Purchase',
+                             color='Campaign Name', size='# of Website Clicks', size_max=20,
+                             title='Clicks vs. Purchase Correlation - Control Campaign')
+
+scatter_test = px.scatter(test_group_cleaned[test_group_cleaned['Campaign Name'].isin(campaigns)], x='# of Website Clicks', y='# of Purchase',
+                          color='Campaign Name', size='# of Website Clicks', size_max=20,
+                          title='Clicks vs. Purchase Correlation - Test Campaign')
+
+# Display the scatter plots
+st.plotly_chart(scatter_control)
+st.plotly_chart(scatter_test)
+
