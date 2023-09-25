@@ -49,3 +49,8 @@ st.plotly_chart(fig, use_container_width=True)
 
 # Streamlit app footer (optional)
 st.sidebar.text("Powered by Streamlit and Plotly")
+
+try:
+    # Your Streamlit app code here
+except Exception as e:
+    st.error(f"An error occurred: {e}")
