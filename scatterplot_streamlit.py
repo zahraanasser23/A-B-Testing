@@ -11,6 +11,10 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+pip install --upgrade python
+pip install --upgrade pandas
+
+
 # Load your data for the control and test sets
 # Load your data for the control and test sets from raw GitHub URLs
 control_data_url = 'https://raw.githubusercontent.com/zahraanasser23/A-B-Testing/main/control_group.csv'
