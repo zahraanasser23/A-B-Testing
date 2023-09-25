@@ -4,8 +4,8 @@ import plotly.express as px
 
 # Load your data for the control and test sets with the correct delimiter
 try:
-    control_data = pd.read_csv('control_data.csv', delimiter=';')
-    test_data = pd.read_csv('test_data.csv', delimiter=';')
+    control_data = pd.read_csv('control_group.csv', delimiter=';')
+    test_data = pd.read_csv('test_group.csv', delimiter=';')
 except Exception as e:
     st.error(f"An error occurred while loading data: {str(e)}")
     control_data = None
