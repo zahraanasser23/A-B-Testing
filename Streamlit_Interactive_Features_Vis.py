@@ -59,10 +59,10 @@ import pandas as pd
 st.sidebar.header('Clicks vs. Purchase Correlation')
 
 # Filter out rows with missing or invalid data in control campaign
-control_group_cleaned = control_data.dropna(subset=['# of Website Clicks', '# of Purchase'])
+control_group_cleaned = control_group.dropna(subset=['# of Website Clicks', '# of Purchase'])
 
 # Filter out rows with missing or invalid data in test campaign
-test_group_cleaned = test_data.dropna(subset=['# of Website Clicks', '# of Purchase'])
+test_group_cleaned = test_group.dropna(subset=['# of Website Clicks', '# of Purchase'])
 
 # Create scatter plots for Clicks vs. Purchase correlation for both campaigns
 campaigns = st.sidebar.multiselect('Select Campaigns', control_group_cleaned['Campaign Name'].unique().tolist() + test_group_cleaned['Campaign Name'].unique().tolist())
