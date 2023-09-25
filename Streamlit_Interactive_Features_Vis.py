@@ -3,8 +3,8 @@ import plotly.graph_objs as go
 import pandas as pd
 
 try:
-    control_group = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/control_group.csv')
-    test_group = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/raw/main/test_group.csv')
+    control_group = pd.read_csv('control_group.csv')
+    test_group = pd.read_csv('test_group.csv')
 except Exception as e:
     st.error(f"Error loading data: {str(e)}")
 
