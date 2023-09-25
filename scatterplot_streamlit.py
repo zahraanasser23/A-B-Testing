@@ -13,7 +13,7 @@ import plotly.express as px
 
 # Load your data for the control and test sets
 control_data = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/blob/main/control_group.csv')
-test_data = pd.read_csv('')
+test_data = pd.read_csv('https://github.com/zahraanasser23/A-B-Testing/blob/main/test_group.csv')
 
 # Streamlit app title
 st.title('Clicks vs. Purchase Correlation')
